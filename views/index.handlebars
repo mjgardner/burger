@@ -7,13 +7,13 @@
       <h2>Available burgers</h2>
       <ul class="list-group">
         {{#each burgers}}
-          {{#unless devoured}}
-            <li class="list-group-item">
-              <i class="fas fa-hamburger"></i>
-              {{burger_name}}
-              <button data-id="{{id}}" type="button" class="devourBtn btn btn-secondary float-right">Devour it!</button>
-            </li>
-          {{/unless}}
+        {{#unless devoured}}
+        <li class="list-group-item">
+          <i class="fas fa-hamburger"></i>
+          {{burger_name}}
+          <button data-id="{{id}}" type="button" class="devourBtn btn btn-secondary float-right">Devour it!</button>
+        </li>
+        {{/unless}}
         {{/each}}
       </ul>
     </div>
@@ -21,45 +21,45 @@
       <h2>Devoured burgers</h2>
       <ul class="list-group">
         {{#each burgers}}
-          {{#if devoured}}
-            <li class="list-group-item">
-              <i class="fas fa-hamburger"></i>
-              {{burger_name}}
-            </li>
-          {{/if}}
+        {{#if devoured}}
+        <li class="list-group-item">
+          <i class="fas fa-hamburger"></i>
+          {{burger_name}}
+        </li>
+        {{/if}}
         {{/each}}
       </ul>
     </div>
   </div>
-<form id="newBurgerForm">
-  <div class="form-group row">
-    <div class="col-sm-4">
-      <input type="text" name="burgerName" id="burgerName" class="form-control">
+  <form id="newBurgerForm">
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <input type="text" name="burgerName" id="burgerName" class="form-control">
+      </div>
+      <div class="col-sm-2 text-right">
+        <button type="submit" class="btn btn-primary">Add a burger</button>
+      </div>
     </div>
-    <div class="col-sm-2 text-right">
-      <button type="submit" class="btn btn-primary">Add a burger</button>
-    </div>
-  </div>
-</form>
+  </form>
 </div>
 
 <script type="text/javascript">
-  $(".devourBtn").click(function(event) {
+  $(".devourBtn").click(function (event) {
     $.ajax("/api/burgers/" + $(this).data("id"), {
       type: "POST"
-    }).then(function() {
+    }).then(function () {
       location.reload();
     });
   });
 
-  $("#newBurgerForm button[type=submit]").click(function(event) {
+  $("#newBurgerForm button[type=submit]").click(function (event) {
     event.preventDefault();
     $.ajax("/api/burgers", {
       type: "POST",
       data: {
         burgerName: $("#burgerName").val().trim()
       }
-    }).then(function() {
+    }).then(function () {
       location.reload();
     });
   });
