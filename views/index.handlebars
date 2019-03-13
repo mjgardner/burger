@@ -8,11 +8,7 @@
       <ul class="list-group">
         {{#each burgers}}
         {{#unless devoured}}
-        <li class="list-group-item">
-          <i class="fas fa-hamburger"></i>
-          {{burger_name}}
-          <button data-id="{{id}}" type="button" class="devourBtn btn btn-secondary float-right">Devour it!</button>
-        </li>
+        {{> burgers/burger-block devour=true}}
         {{/unless}}
         {{/each}}
       </ul>
@@ -22,10 +18,7 @@
       <ul class="list-group">
         {{#each burgers}}
         {{#if devoured}}
-        <li class="list-group-item">
-          <i class="fas fa-hamburger"></i>
-          {{burger_name}}
-        </li>
+        {{> burgers/burger-block devour=false}}
         {{/if}}
         {{/each}}
       </ul>
